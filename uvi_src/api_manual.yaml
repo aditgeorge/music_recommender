@@ -1,0 +1,49 @@
+---
+#===============================================
+API MANUAL:
+  This API has two servers running which are mongo-server and uvi-server. In case of an error for curl commands please check if the servers are up.
+  The list of curl commands for Version2 are listed along with a description of what they do and common failure conditions. Tbe JSON output format will need to be amended for double quotes in the curl commands
+    
+Commands:
+  - Syntax: curl -X GET "http://localhost:8080/v2/"
+    Explanation: Retreives instruction manual
+    Failure:
+  - Syntax: curl -X POST "http://localhost:8080/v2/customers/{userid}"
+    Explanation: Adds a user with given userid
+    Failure:
+      -  User exists
+  - Syntax: curl -X PUT "http://localhost:8080/v2/customers/{userid}?name={username}"
+    Explanation: assigns user with userid the given name which is username
+    Failure:
+      - User doesn't exist
+  - Syntax: curl -X GET "http://localhost:8080/v2/customers/{userid}"
+    Explanation: retrieves user information which is id and username.
+    Failure:
+      - User doesn't exist
+  - Syntax: curl -X DELETE "http://localhost:8080/v2/customers/{userid}"
+    Explanation: Deletes user with userid.
+    Failure:
+      - User doesn't exist
+  - Syntax: curl -X POST "http://localhost:8080/v2/customers/{userid}/listened/{songid}"
+    Explanation: Adds songid to listend song list of user with userid.
+    Failure:
+      - User doesn't exist.
+      - Song doesn't exist in song_meta.json
+  - Syntax: curl -X GET "http://localhost:8080/v2/customers/{userid}/listened"
+    Explanation: Retrieves listened song list of user with userid
+    Failure:
+      - User doesn't exist
+  - Syntax: curl -X DELETE "http://localhost:8080/v2/customers/{userid}/listened/{songid}"
+    Explanation: Deletes songid from user with userid's playlist
+    Failure:
+      - User doesn't exists
+      - Song doesn't exist in user's playlist
+  - Syntax: curl -X GET "http://localhost:8080/v2/songs/{songid}"
+    Explanation: Retrieves song meta data
+    Failure:
+      - Song doesn't exist in song_meta.json
+  - Syntax: curl -X GET "http://localhost:8080/v2/customers/{userid}/suggestion"
+    Explanation: Retrieves user's recommendation list
+    Failure:
+      - User doesn't exist
+...
